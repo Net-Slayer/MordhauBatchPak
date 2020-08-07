@@ -8,7 +8,8 @@ Cook, Pak and Copy Mordhau Modded files
 
 
 # Installation
-Extract contents of release to folder and run
+Check "releases" ont he right of the page. Download the latest version.
+Extract files of release into a folder and run.
 
 # Usage
 May require to be run as an administrator
