@@ -499,9 +499,9 @@ namespace MordhauBatchPak
                 PrintLine(' ');
 
                 if (Chk_Compress_Cook.Checked)
-                    str_CMD_Cook = "\"" + Txt_Proj.Text + "\" -run=cook -targetplatform=WindowsNoEditor -silent -CookAll -compress >Cooking.log";
+                    str_CMD_Cook = "\"" + Txt_Proj.Text + "\" -run=cook -targetplatform=WindowsNoEditor -silent -compress >Cooking.log";
                 else
-                    str_CMD_Cook = "\"" + Txt_Proj.Text + "\" -run=cook -targetplatform=WindowsNoEditor -silent -CookAll >Cooking.log";
+                    str_CMD_Cook = "\"" + Txt_Proj.Text + "\" -run=cook -targetplatform=WindowsNoEditor -silent >Cooking.log";
 
                 //str_CMD_Cook = str_CMD_Cook + " >logs/Cooking.log";
                 PrintLog("Cook command changed to:", LogFlag.Msg);
@@ -618,8 +618,9 @@ namespace MordhauBatchPak
             PrintLog(comment, LogFlag.Msg);
 
             watch.Stop();
-
-            PrintLog($"Execution Time: {watch.ElapsedMilliseconds} ms", LogFlag.CMD);
+            double timeTaken = Math.Round(Convert.ToDouble(watch.ElapsedMilliseconds)/1000, 3);
+            
+            PrintLog($"Execution Time: {timeTaken} s", LogFlag.CMD);
             PrintLine();
         }
 
