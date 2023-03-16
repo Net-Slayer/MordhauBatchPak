@@ -33,6 +33,9 @@ namespace MordhauBatchPak
             InitializeComponent();
             MWRef = this;
 
+            PrintLine('*');
+            PrintLog("This tool is designed primarily for UE4 Mordhau Mods that are part of the root content folder e.g. With the file structure Content/Mordhau/Maps/YourModName");
+            PrintLine('*');
             CheckUE4();
             CheckProj();
             CheckMap();
@@ -43,8 +46,13 @@ namespace MordhauBatchPak
 
         private void MainWindow_Load(object sender, EventArgs e)
         {
+            Point clampedLocation = new Point(0, 0);
             if (Settings.Default.WindowLocation != null)
-                this.Location = Settings.Default.WindowLocation;
+                //Occasionally window location is set to minus numbers
+                clampedLocation.X = Math.Max(0, Settings.Default.WindowLocation.X);
+                clampedLocation.Y = Math.Max(0, Settings.Default.WindowLocation.Y);
+                this.Location = clampedLocation;
+                
         }
 
         private bool CheckPathSet(string folderpath, bool returnError = true)
@@ -181,7 +189,7 @@ namespace MordhauBatchPak
 
         private void CheckProj()
         {
-            string str_seeking = "Mordhau.uproject";
+            string str_seeking = ".uproject";
             string path_Proj = Txt_Proj.Text;
 
             isProjectSet = CheckPathSet(path_Proj, str_seeking);
